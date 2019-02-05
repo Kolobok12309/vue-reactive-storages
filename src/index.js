@@ -97,4 +97,6 @@ function autoVueInject(vuePlugin, ...args) {
     }
 }
 
+window.vueReactiveStoragesPlugin = plugin;
+
 export default plugin;

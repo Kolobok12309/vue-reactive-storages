@@ -2702,6 +2702,7 @@ function autoVueInject(vuePlugin) {
   }
 }
 
+window.vueReactiveStoragesPlugin = plugin;
 /* harmony default export */ __webpack_exports__["a"] = (plugin);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
 
