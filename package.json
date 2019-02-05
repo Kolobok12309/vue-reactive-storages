@@ -1,6 +1,6 @@
 {
   "name": "vue-reactive-storages",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/vue-reactive-storages.umd.js",
   "unpkg": "dist/vue-reactive-storages.umd.min.js",
   "module": "src/index.js",
