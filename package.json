@@ -1,7 +1,9 @@
 {
   "name": "vue-reactive-storages",
   "version": "1.0.0",
-  "private": true,
+  "main": "dist/vue-reactive-storages.umd.js",
+  "unpkg": "dist/vue-reactive-storages.umd.min.js",
+  "module": "src/index.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target lib --name vue-reactive-storages src/index.js",
