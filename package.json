@@ -1,7 +1,17 @@
 {
   "name": "vue-reactive-storages",
   "version": "1.0.1",
-  "main": "dist/vue-reactive-storages.umd.js",
+  "homepage": "https://github.com/Kolobok12309/vue-reactive-storages",
+  "license": "MIT",
+  "description": "Plugin for vue and local/sessionStorage",
+  "keywords": [
+    "vue",
+    "localstorage",
+    "sessionstorage",
+    "reactive"
+  ],
+  "repository": "github:kolobok12309/vue-reactive-storages",
+  "main": "src/index.js",
   "unpkg": "dist/vue-reactive-storages.umd.min.js",
   "module": "src/index.js",
   "scripts": {
