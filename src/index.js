@@ -5,6 +5,20 @@ function hasOwnProperty(obj, key) {
     return Object.prototype.hasOwnProperty.call(obj, key);
 }
 
+// eslint-disable-next-line
+function autoVueInject(vuePlugin, ...args) {
+    let globalVue = null;
+    if (window !== undefined) {
+        globalVue = window.Vue;
+    } else if (global !== undefined) {
+        globalVue = global.Vue;
+    }
+
+    if (globalVue) {
+        globalVue.use(vuePlugin, ...args);
+    }
+}
+
 class Plugin {
     constructor() {
         this.Vue = null;
@@ -83,19 +97,6 @@ class Plugin {
 }
 
 const plugin = new Plugin();
-// eslint-disable-next-line
-function autoVueInject(vuePlugin, ...args) {
-    let globalVue = null;
-    if (window !== undefined) {
-        globalVue = window.Vue;
-    } else if (global !== undefined) {
-        globalVue = global.Vue;
-    }
-
-    if (globalVue) {
-        globalVue.use(vuePlugin, ...args);
-    }
-}
 
 window.vueReactiveStoragesPlugin = plugin;
 
