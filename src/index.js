@@ -85,11 +85,11 @@ class Plugin {
     makeReactiveProp(propName) {
         const { app, storage } = this;
         if (!hasOwnProperty(app, 'watch')) app.watch = {};
-        if (hasOwnProperty(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already in users in watchers');
+        if (hasOwnProperty(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already used in watchers');
 
         app.watch[propName] = {
             handler() {
-                storage.saveStorage(true);
+                storage.saveStorage();
             },
             deep: true,
         };

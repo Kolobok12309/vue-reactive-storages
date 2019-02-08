@@ -54,3 +54,69 @@ new Vue(app).$mount('#app');
 `propName` - Name of prop in Vue components and name of Vuex module (if exist) Default `$RStore`
 
 `listeners` - Array with listeners, once argument is storage Default []
+
+## Api
+
+### saveStorage
+
+#### Arguments
+
+`noNeedEvent` - Boolean true/false
+If true, events started in other tabs and run handlers
+Else if false, events started in all tabs(and in the same), and run handlers
+Default true
+
+In most situations you don't need this function, but if you lose reactivity from Vue in this object, you can use it
+
+#### Example
+
+```js
+Vue.use(reactivePlugin, {
+    app,
+    preset: {
+        test: '',
+    },
+    type: 'local',
+    propName: '$RStore',
+    listeners: [listener],
+});
+const store = app.$RStore;
+store.saveStorage();
+```
+
+### addChangeHandler
+
+Function to add change-handler
+
+#### Arguments
+
+function with one arguments:
+`reactiveStore` - It's reactive store
+
+#### Example
+```js
+...
+store.addChangeHandler((reactiveStore) => console.log(reactiveStore));
+store.test = '1';
+...
+```
+
+### removeChangeHandler
+
+Function ro remova change-handler, need the same function as in `addChangeHandler`
+
+### Arguments
+
+function
+
+#### Example
+
+```js
+function log(reactiveStore) {
+    console.log(reactiveStore)
+}
+store.addChangeHandler(log);
+store.test = '1';
+store.removeChangeHandler(log);
+store.test = '2';
+```

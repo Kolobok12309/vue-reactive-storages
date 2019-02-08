@@ -1702,8 +1702,6 @@ function () {
 
         if (_this._$store === storageArea && key === _this._$config.name) {
           assign_default()(_this, store.getJSONItem(_this._$config.name));
-
-          _this._doChangehandlers();
         }
       });
       this._$config = config;
@@ -2584,6 +2582,27 @@ module.exports = function (it) {
 
 function hasOwnProperty(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
+} // eslint-disable-next-line
+
+
+function autoVueInject(vuePlugin) {
+  var globalVue = null;
+
+  if (window !== undefined) {
+    globalVue = window.Vue;
+  } else if (global !== undefined) {
+    globalVue = global.Vue;
+  }
+
+  if (globalVue) {
+    var _globalVue;
+
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    (_globalVue = globalVue).use.apply(_globalVue, [vuePlugin].concat(args));
+  }
 }
 
 var Plugin =
@@ -2667,10 +2686,10 @@ function () {
       var app = this.app,
           storage = this.storage;
       if (!hasOwnProperty(app, 'watch')) app.watch = {};
-      if (hasOwnProperty(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already in users in watchers');
+      if (hasOwnProperty(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already used in watchers');
       app.watch[propName] = {
         handler: function handler() {
-          storage.saveStorage(true);
+          storage.saveStorage();
         },
         deep: true
       };
@@ -2680,28 +2699,7 @@ function () {
   return Plugin;
 }();
 
-var plugin = new Plugin(); // eslint-disable-next-line
-
-function autoVueInject(vuePlugin) {
-  var globalVue = null;
-
-  if (window !== undefined) {
-    globalVue = window.Vue;
-  } else if (global !== undefined) {
-    globalVue = global.Vue;
-  }
-
-  if (globalVue) {
-    var _globalVue;
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    (_globalVue = globalVue).use.apply(_globalVue, [vuePlugin].concat(args));
-  }
-}
-
+var plugin = new Plugin();
 window.vueReactiveStoragesPlugin = plugin;
 /* harmony default export */ __webpack_exports__["a"] = (plugin);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))

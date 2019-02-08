@@ -122,7 +122,6 @@ class defaultReactiveStorage {
         window.addEventListener('storage', ({ storageArea, key }) => {
             if (this._$store === storageArea && key === this._$config.name) {
                 Object.assign(this, store.getJSONItem(this._$config.name));
-                this._doChangehandlers();
             }
         });
 
