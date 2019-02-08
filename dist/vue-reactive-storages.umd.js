@@ -1424,414 +1424,6 @@ module.exports = $export;
 
 /***/ }),
 
-/***/ "6438":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
-var iterator = __webpack_require__("5d58");
-var iterator_default = /*#__PURE__*/__webpack_require__.n(iterator);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
-var symbol = __webpack_require__("67bb");
-var symbol_default = /*#__PURE__*/__webpack_require__.n(symbol);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
-
-
-
-function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
-
-function typeof_typeof(obj) {
-  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
-    typeof_typeof = function _typeof(obj) {
-      return typeof_typeof2(obj);
-    };
-  } else {
-    typeof_typeof = function _typeof(obj) {
-      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
-    };
-  }
-
-  return typeof_typeof(obj);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js
-
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (typeof_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return _assertThisInitialized(self);
-}
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js
-var get_prototype_of = __webpack_require__("061b");
-var get_prototype_of_default = /*#__PURE__*/__webpack_require__.n(get_prototype_of);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js
-var set_prototype_of = __webpack_require__("4d16");
-var set_prototype_of_default = /*#__PURE__*/__webpack_require__.n(set_prototype_of);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js
-
-
-function getPrototypeOf_getPrototypeOf(o) {
-  getPrototypeOf_getPrototypeOf = set_prototype_of_default.a ? get_prototype_of_default.a : function _getPrototypeOf(o) {
-    return o.__proto__ || get_prototype_of_default()(o);
-  };
-  return getPrototypeOf_getPrototypeOf(o);
-}
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/create.js
-var create = __webpack_require__("4aa6");
-var create_default = /*#__PURE__*/__webpack_require__.n(create);
-
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/setPrototypeOf.js
-
-function _setPrototypeOf(o, p) {
-  _setPrototypeOf = set_prototype_of_default.a || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js
-
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = create_default()(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) _setPrototypeOf(subClass, superClass);
-}
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
-var define_property = __webpack_require__("85f2");
-var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js
-var object_assign = __webpack_require__("5176");
-var assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
-var es6_function_name = __webpack_require__("7f7f");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js
-var classCallCheck = __webpack_require__("d225");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js
-var createClass = __webpack_require__("b0b4");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js
-var keys = __webpack_require__("a4bb");
-var keys_default = /*#__PURE__*/__webpack_require__.n(keys);
-
-// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
-var web_dom_iterable = __webpack_require__("ac6a");
-
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js
-var stringify = __webpack_require__("f499");
-var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
-
-// CONCATENATED MODULE: ./src/mainClass.js
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Функция глубокого копирования аргумента
-function fullCopy(obj) {
-  return JSON.parse(stringify_default()(obj));
-} // Функция для создания строки с ошибкой
-
-
-function getErrorText(text) {
-  return "[ReactiveStorage] ".concat(text);
-} // Получение хранилища по типу
-
-
-function getStoreByType(type) {
-  var result;
-
-  switch (type) {
-    case 'local':
-      result = window.localStorage;
-      break;
-
-    case 'session':
-      result = window.sessionStorage;
-      break;
-
-    default:
-      result = null;
-      break;
-  }
-
-  return result;
-} // Модифицированная функция записи в хранилище с созданием события на текущей вкладке и преобразованием сложных типов к строке
-
-
-function setEItem(key, value) {
-  var modifiedValue;
-
-  switch (typeof_typeof(value)) {
-    // В случае если подан объект, необходимо его перевести в строку путем JSON кодирования
-    case 'object':
-      modifiedValue = stringify_default()(value);
-      break;
-
-    case 'function':
-      // В случае если подана функция выбрасываем ошибку т.к.
-      throw new Error(getErrorText("Function can't be in storage"));
-
-    default:
-      // В ином случае просто записать значение
-      modifiedValue = value;
-      break;
-  } // Получение старого значения для передачи в событие
-
-
-  var oldValue = this.getItem(key); // Запись в хранилище нового значения
-
-  this.setItem(key, modifiedValue); // Создание, конфиг и вызов события для текущей вкладки
-
-  var e = document.createEvent('StorageEvent');
-  e.initStorageEvent('storage', false, false, key, oldValue, modifiedValue, window.location.href, this); // Вызов события
-
-  window.dispatchEvent(e);
-} // Получение элемента, при возможности распаршенный
-
-
-function getJSONItem(key) {
-  // Получение элемента из local/sessionStorage
-  var value = this.getItem(key);
-  var modifiedValue;
-
-  try {
-    // Попытка распарсить из json
-    modifiedValue = JSON.parse(value);
-  } catch (e) {
-    // В случае неудачи вернуть неизмененное значение
-    modifiedValue = value;
-  }
-
-  return modifiedValue;
-} // Приведение объекта к шаблону через рекурсию
-
-
-function objToPattern(obj, pattern) {
-  keys_default()(pattern).forEach(function (key) {
-    if (key in obj) {
-      if (obj[key] && typeof_typeof(obj[key]) === 'object') {
-        objToPattern(obj[key], pattern[key]);
-      }
-    } else {
-      obj[key] = fullCopy(pattern[key]);
-    }
-  });
-}
-
-var mainClass_defaultReactiveStorage =
-/*#__PURE__*/
-function () {
-  function defaultReactiveStorage() {
-    Object(classCallCheck["a" /* default */])(this, defaultReactiveStorage);
-
-    this._$timer = null;
-    this._$config = {};
-    this._$preset = {};
-    this._$data = {};
-    this._$handlers = {};
-    this._$store = {};
-    this._$blacklist = [];
-    this._$listeners = []; // Установка в прототип хранилищ своих функций
-
-    if (!Storage.prototype.setEItem) {
-      Storage.prototype.setEItem = setEItem;
-    }
-
-    if (!Storage.prototype.getJSONItem) {
-      Storage.prototype.getJSONItem = getJSONItem;
-    }
-
-    this._$blacklist = keys_default()(this);
-
-    this._hideProps();
-  }
-
-  Object(createClass["a" /* default */])(defaultReactiveStorage, [{
-    key: "_initConfig",
-    value: function _initConfig(config) {
-      var _this = this;
-
-      var store = getStoreByType(config.type);
-      if (!store) throw new Error(getErrorText('Wrong storage type')); // Получение хранилища
-
-      var value = store.getJSONItem(config.name); // Заполнение объекта данными из пресета
-
-      keys_default()(this._$preset).forEach(function (key) {
-        if (!~_this._$blacklist.indexOf(key)) _this[key] = _this._$preset[key];
-      }); // Совмещение данных из пресета с данными из хранилища
-
-
-      assign_default()(this, value);
-
-      this._fixTemplate(); // Обработка события изменения хранилища
-
-
-      window.addEventListener('storage', function (_ref) {
-        var storageArea = _ref.storageArea,
-            key = _ref.key;
-
-        if (_this._$store === storageArea && key === _this._$config.name) {
-          assign_default()(_this, store.getJSONItem(_this._$config.name));
-        }
-      });
-      this._$config = config;
-      this._$store = store;
-    } // Сокрытие служебных свойств
-
-  }, {
-    key: "_hideProps",
-    value: function _hideProps() {
-      var _this2 = this;
-
-      keys_default()(this).forEach(function (key) {
-        define_property_default()(_this2, key, {
-          enumerable: false
-        });
-      });
-    } // Функция приведения текущего хранилища к шаблону
-
-  }, {
-    key: "_fixTemplate",
-    value: function _fixTemplate() {
-      objToPattern(this, this._$preset);
-    } // Сохранение хранилища
-
-  }, {
-    key: "saveStorage",
-    value: function saveStorage() {
-      var _this3 = this;
-
-      var noNeedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
-
-      // Запуск сохранения осуществляется не при каждом вызове а максимум раз в минимальную задержку браузера
-      if (this._$timer === null) {
-        this._fixTemplate();
-
-        if (noNeedEvent) {
-          this._$store.setItem(this._$config.name, stringify_default()(this));
-
-          this._doChangehandlers();
-        } else {
-          this._$store.setEItem(this._$config.name, this);
-        }
-
-        this._$timer = setTimeout(function () {
-          return _this3._$timer = null;
-        }, 0);
-      } else {
-        this._$timer = setTimeout(function () {
-          return _this3._$timer = null;
-        }, 0);
-      }
-    } // Добавление события на изменение данных
-
-  }, {
-    key: "addChangeHandler",
-    value: function addChangeHandler(callback) {
-      this._$listeners.push(callback);
-    } // Удаление события
-
-  }, {
-    key: "removeChangeHandler",
-    value: function removeChangeHandler(callback) {
-      var index = this._$listeners.indexOf(callback);
-
-      if (~index) {
-        this._$listeners.splice(index, 1);
-      }
-    } // Запуск обработчиков
-
-  }, {
-    key: "_doChangehandlers",
-    value: function _doChangehandlers() {
-      var _this4 = this;
-
-      this._$listeners.forEach(function (handler) {
-        handler(_this4);
-      });
-    }
-  }]);
-
-  return defaultReactiveStorage;
-}();
-
-var mainClass_reactiveStorage =
-/*#__PURE__*/
-function (_defaultReactiveStora) {
-  _inherits(reactiveStorage, _defaultReactiveStora);
-
-  function reactiveStorage(preset) {
-    var _this5;
-
-    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
-      type: 'local',
-      name: '$RStore',
-      ttl: 60 * 60 * 24 * 1000 * 7
-    };
-    var listeners = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var onload = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function () {};
-
-    Object(classCallCheck["a" /* default */])(this, reactiveStorage);
-
-    _this5 = _possibleConstructorReturn(this, getPrototypeOf_getPrototypeOf(reactiveStorage).call(this));
-    _this5._$preset = fullCopy(preset);
-
-    _this5._initConfig(config);
-
-    _this5._$listeners = _this5._$listeners.concat(listeners);
-
-    _this5.saveStorage(false);
-
-    onload(_assertThisInitialized(_assertThisInitialized(_this5)));
-    return _this5;
-  }
-
-  return reactiveStorage;
-}(mainClass_defaultReactiveStorage);
-
-/* harmony default export */ var mainClass = __webpack_exports__["a"] = (mainClass_reactiveStorage);
-
-/***/ }),
-
 /***/ "6718":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2115,6 +1707,105 @@ NAME in FProto || __webpack_require__("9e1e") && dP(FProto, NAME, {
 var core = module.exports = { version: '2.6.3' };
 if (typeof __e == 'number') __e = core; // eslint-disable-line no-undef
 
+
+/***/ }),
+
+/***/ "83af":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return hasOwnProperty; });
+/* unused harmony export autoVueInject */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return injectStorage; });
+/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("85f2");
+/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("bd86");
+/* harmony import */ var _vuexModule__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("abb0");
+
+
+
+function hasOwnProperty(obj, key) {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+} // eslint-disable-next-line
+
+function autoVueInject(vuePlugin) {
+  var globalVue = null;
+
+  if (window !== undefined) {
+    globalVue = window.Vue;
+  } else if (global !== undefined) {
+    globalVue = global.Vue;
+  }
+
+  if (globalVue) {
+    var _globalVue;
+
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    (_globalVue = globalVue).use.apply(_globalVue, [vuePlugin].concat(args));
+  }
+}
+
+function fixKey(key) {
+  if (key[0] === '$') return key;
+  return "$".concat(key);
+}
+
+function injectVuex(app, propName, storage) {
+  var key = fixKey(propName);
+  var store = app.store;
+
+  if (store) {
+    store.registerModule(key, Object(_vuexModule__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(storage));
+  } else if (false) {}
+}
+
+function injectProp(Vue, app, propName, storage) {
+  var key = fixKey(propName);
+
+  if (hasOwnProperty(app, key) || hasOwnProperty(Vue.prototype, key)) {
+    throw new Error('[ReactiveStorage] propName is already used');
+  }
+
+  app[key] = storage;
+  Vue.use(function () {
+    Vue.mixin({
+      data: function data() {
+        return Object(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, key, storage);
+      }
+    });
+
+    D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(Vue.prototype, key, {
+      get: function get() {
+        return storage;
+      }
+    });
+  });
+}
+
+function makeReactiveProp(app, propName, storage) {
+  var key = fixKey(propName);
+  if (!hasOwnProperty(app, 'watch')) app.watch = {};
+  if (hasOwnProperty(app.watch, key)) throw new Error('[ReactiveStorage] propName is already used in watchers');
+  app.watch[key] = {
+    handler: function handler() {
+      storage.saveStorage();
+    },
+    deep: true
+  };
+}
+
+function injectStorage(Vue, app) {
+  var propName = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '$RStore';
+  var storage = arguments.length > 3 ? arguments[3] : undefined;
+  var key = fixKey(propName);
+  injectVuex(app, key, storage);
+  injectProp(Vue, app, key, storage);
+  makeReactiveProp(app, key, storage);
+}
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
 
 /***/ }),
 
@@ -2530,34 +2221,6 @@ module.exports = function (bitmap, value) {
 
 /***/ }),
 
-/***/ "b0b4":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _createClass; });
-/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("85f2");
-/* harmony import */ var _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
-
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-
-    _core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-/***/ }),
-
 /***/ "b447":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2568,150 +2231,6 @@ module.exports = function (it) {
   return it > 0 ? min(toInteger(it), 0x1fffffffffffff) : 0; // pow(2, 53) - 1 == 9007199254740991
 };
 
-
-/***/ }),
-
-/***/ "b635":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__("85f2");
-/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__("bd86");
-/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__("d225");
-/* harmony import */ var D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__("b0b4");
-/* harmony import */ var _mainClass__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__("6438");
-/* harmony import */ var _vuexModule__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__("abb0");
-
-
-
-
-
-
-
-function hasOwnProperty(obj, key) {
-  return Object.prototype.hasOwnProperty.call(obj, key);
-} // eslint-disable-next-line
-
-
-function autoVueInject(vuePlugin) {
-  var globalVue = null;
-
-  if (window !== undefined) {
-    globalVue = window.Vue;
-  } else if (global !== undefined) {
-    globalVue = global.Vue;
-  }
-
-  if (globalVue) {
-    var _globalVue;
-
-    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      args[_key - 1] = arguments[_key];
-    }
-
-    (_globalVue = globalVue).use.apply(_globalVue, [vuePlugin].concat(args));
-  }
-}
-
-var Plugin =
-/*#__PURE__*/
-function () {
-  function Plugin() {
-    Object(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_classCallCheck__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"])(this, Plugin);
-
-    this.Vue = null;
-    this.app = null;
-    this.storage = null;
-  }
-
-  Object(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_createClass__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"])(Plugin, [{
-    key: "install",
-    value: function install(Vue, _ref) {
-      var app = _ref.app,
-          _ref$type = _ref.type,
-          type = _ref$type === void 0 ? 'local' : _ref$type,
-          _ref$storageName = _ref.storageName,
-          storageName = _ref$storageName === void 0 ? '$RStore' : _ref$storageName,
-          _ref$propName = _ref.propName,
-          propName = _ref$propName === void 0 ? '$RStore' : _ref$propName,
-          _ref$ttl = _ref.ttl,
-          ttl = _ref$ttl === void 0 ? 60 * 60 * 24 * 1000 * 7 : _ref$ttl,
-          preset = _ref.preset,
-          _ref$listeners = _ref.listeners,
-          listeners = _ref$listeners === void 0 ? [] : _ref$listeners;
-      if (app === undefined) throw new Error('[ReactiveStorage] undefined app');
-      if (preset === undefined) throw new Error('[ReactiveStorage] undefined preset');
-      this.Vue = Vue;
-      this.app = app;
-      var config = {
-        type: type,
-        name: storageName,
-        ttl: ttl
-      };
-      this.storage = new _mainClass__WEBPACK_IMPORTED_MODULE_4__[/* default */ "a"](preset, config, listeners);
-      this.injectVuex(propName);
-      this.injectProp(propName);
-      this.makeReactiveProp(propName);
-    }
-  }, {
-    key: "injectVuex",
-    value: function injectVuex(propName) {
-      var store = this.app.store;
-
-      if (store) {
-        store.registerModule(propName, Object(_vuexModule__WEBPACK_IMPORTED_MODULE_5__[/* default */ "a"])(this.storage));
-      } else if (false) {}
-    }
-  }, {
-    key: "injectProp",
-    value: function injectProp(propName) {
-      var Vue = this.Vue,
-          app = this.app,
-          storage = this.storage;
-
-      if (hasOwnProperty(app, propName) || hasOwnProperty(Vue.prototype, propName)) {
-        throw new Error('[ReactiveStorage] propName is already used');
-      }
-
-      app[propName] = storage;
-      Vue.use(function () {
-        Vue.mixin({
-          data: function data() {
-            return Object(D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"])({}, propName, storage);
-          }
-        });
-
-        D_SomeProjects_Packets_vue_reactive_storages_node_modules_babel_runtime_corejs2_core_js_object_define_property__WEBPACK_IMPORTED_MODULE_0___default()(Vue.prototype, propName, {
-          get: function get() {
-            return storage;
-          }
-        });
-      });
-    }
-  }, {
-    key: "makeReactiveProp",
-    value: function makeReactiveProp(propName) {
-      var app = this.app,
-          storage = this.storage;
-      if (!hasOwnProperty(app, 'watch')) app.watch = {};
-      if (hasOwnProperty(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already used in watchers');
-      app.watch[propName] = {
-        handler: function handler() {
-          storage.saveStorage();
-        },
-        deep: true
-      };
-    }
-  }]);
-
-  return Plugin;
-}();
-
-var plugin = new Plugin();
-window.vueReactiveStoragesPlugin = plugin;
-/* harmony default export */ __webpack_exports__["a"] = (plugin);
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__("c8ba")))
 
 /***/ }),
 
@@ -3025,19 +2544,6 @@ module.exports = function (KEY, exec) {
   $export($export.S + $export.F * fails(function () { fn(1); }), 'Object', exp);
 };
 
-
-/***/ }),
-
-/***/ "d225":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _classCallCheck; });
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
 
 /***/ }),
 
@@ -3372,22 +2878,557 @@ __webpack_require__.r(__webpack_exports__);
 // This file is imported into lib/wc client bundles.
 
 if (typeof window !== 'undefined') {
-  var i
-  if ((i = window.document.currentScript) && (i = i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
-    __webpack_require__.p = i[1] // eslint-disable-line
+  var setPublicPath_i
+  if ((setPublicPath_i = window.document.currentScript) && (setPublicPath_i = setPublicPath_i.src.match(/(.+\/)[^/]+\.js(\?.*)?$/))) {
+    __webpack_require__.p = setPublicPath_i[1] // eslint-disable-line
   }
 }
 
 // Indicate to webpack that this file can be concatenated
 /* harmony default export */ var setPublicPath = (null);
 
-// EXTERNAL MODULE: ./src/index.js
-var src = __webpack_require__("b635");
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol/iterator.js
+var iterator = __webpack_require__("5d58");
+var iterator_default = /*#__PURE__*/__webpack_require__.n(iterator);
 
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/symbol.js
+var symbol = __webpack_require__("67bb");
+var symbol_default = /*#__PURE__*/__webpack_require__.n(symbol);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/typeof.js
+
+
+
+function typeof_typeof2(obj) { if (typeof symbol_default.a === "function" && typeof iterator_default.a === "symbol") { typeof_typeof2 = function _typeof2(obj) { return typeof obj; }; } else { typeof_typeof2 = function _typeof2(obj) { return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof obj; }; } return typeof_typeof2(obj); }
+
+function typeof_typeof(obj) {
+  if (typeof symbol_default.a === "function" && typeof_typeof2(iterator_default.a) === "symbol") {
+    typeof_typeof = function _typeof(obj) {
+      return typeof_typeof2(obj);
+    };
+  } else {
+    typeof_typeof = function _typeof(obj) {
+      return obj && typeof symbol_default.a === "function" && obj.constructor === symbol_default.a && obj !== symbol_default.a.prototype ? "symbol" : typeof_typeof2(obj);
+    };
+  }
+
+  return typeof_typeof(obj);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/assertThisInitialized.js
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/possibleConstructorReturn.js
+
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (typeof_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return _assertThisInitialized(self);
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/get-prototype-of.js
+var get_prototype_of = __webpack_require__("061b");
+var get_prototype_of_default = /*#__PURE__*/__webpack_require__.n(get_prototype_of);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/set-prototype-of.js
+var set_prototype_of = __webpack_require__("4d16");
+var set_prototype_of_default = /*#__PURE__*/__webpack_require__.n(set_prototype_of);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/getPrototypeOf.js
+
+
+function getPrototypeOf_getPrototypeOf(o) {
+  getPrototypeOf_getPrototypeOf = set_prototype_of_default.a ? get_prototype_of_default.a : function _getPrototypeOf(o) {
+    return o.__proto__ || get_prototype_of_default()(o);
+  };
+  return getPrototypeOf_getPrototypeOf(o);
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/create.js
+var create = __webpack_require__("4aa6");
+var create_default = /*#__PURE__*/__webpack_require__.n(create);
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/setPrototypeOf.js
+
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = set_prototype_of_default.a || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/inherits.js
+
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = create_default()(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) _setPrototypeOf(subClass, superClass);
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/define-property.js
+var define_property = __webpack_require__("85f2");
+var define_property_default = /*#__PURE__*/__webpack_require__.n(define_property);
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/assign.js
+var object_assign = __webpack_require__("5176");
+var assign_default = /*#__PURE__*/__webpack_require__.n(object_assign);
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
+var es6_function_name = __webpack_require__("7f7f");
+
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/classCallCheck.js
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+// CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/createClass.js
+
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+
+    define_property_default()(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/object/keys.js
+var keys = __webpack_require__("a4bb");
+var keys_default = /*#__PURE__*/__webpack_require__.n(keys);
+
+// EXTERNAL MODULE: ./node_modules/core-js/modules/web.dom.iterable.js
+var web_dom_iterable = __webpack_require__("ac6a");
+
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js
+var stringify = __webpack_require__("f499");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
+// CONCATENATED MODULE: ./src/mainClass.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Функция глубокого копирования аргумента
+function fullCopy(obj) {
+  return JSON.parse(stringify_default()(obj));
+} // Функция для создания строки с ошибкой
+
+
+function getErrorText(text) {
+  return "[ReactiveStorage] ".concat(text);
+} // Получение хранилища по типу
+
+
+function getStoreByType(type) {
+  var result;
+
+  switch (type) {
+    case 'local':
+      result = window.localStorage;
+      break;
+
+    case 'session':
+      result = window.sessionStorage;
+      break;
+
+    default:
+      result = null;
+      break;
+  }
+
+  return result;
+} // Модифицированная функция записи в хранилище с созданием события на текущей вкладке и преобразованием сложных типов к строке
+
+
+function setEItem(key, value) {
+  var modifiedValue;
+
+  switch (typeof_typeof(value)) {
+    // В случае если подан объект, необходимо его перевести в строку путем JSON кодирования
+    case 'object':
+      modifiedValue = stringify_default()(value);
+      break;
+
+    case 'function':
+      // В случае если подана функция выбрасываем ошибку т.к.
+      throw new Error(getErrorText("Function can't be in storage"));
+
+    default:
+      // В ином случае просто записать значение
+      modifiedValue = value;
+      break;
+  } // Получение старого значения для передачи в событие
+
+
+  var oldValue = this.getItem(key); // Запись в хранилище нового значения
+
+  this.setItem(key, modifiedValue); // Создание, конфиг и вызов события для текущей вкладки
+
+  var e = document.createEvent('StorageEvent');
+  e.initStorageEvent('storage', false, false, key, oldValue, modifiedValue, window.location.href, this); // Вызов события
+
+  window.dispatchEvent(e);
+} // Получение элемента, при возможности распаршенный
+
+
+function getJSONItem(key) {
+  // Получение элемента из local/sessionStorage
+  var value = this.getItem(key);
+  var modifiedValue;
+
+  try {
+    // Попытка распарсить из json
+    modifiedValue = JSON.parse(value);
+  } catch (e) {
+    // В случае неудачи вернуть неизмененное значение
+    modifiedValue = value;
+  }
+
+  return modifiedValue;
+} // Приведение объекта к шаблону через рекурсию
+
+
+function objToPattern(obj, pattern) {
+  keys_default()(pattern).forEach(function (key) {
+    if (key in obj) {
+      if (obj[key] && typeof_typeof(obj[key]) === 'object') {
+        objToPattern(obj[key], pattern[key]);
+      }
+    } else {
+      obj[key] = fullCopy(pattern[key]);
+    }
+  });
+}
+
+var mainClass_defaultReactiveStorage =
+/*#__PURE__*/
+function () {
+  function defaultReactiveStorage() {
+    _classCallCheck(this, defaultReactiveStorage);
+
+    this._$timer = null;
+    this._$config = {};
+    this._$preset = {};
+    this._$data = {};
+    this._$handlers = {};
+    this._$store = {};
+    this._$blacklist = [];
+    this._$listeners = []; // Установка в прототип хранилищ своих функций
+
+    if (!Storage.prototype.setEItem) {
+      Storage.prototype.setEItem = setEItem;
+    }
+
+    if (!Storage.prototype.getJSONItem) {
+      Storage.prototype.getJSONItem = getJSONItem;
+    }
+
+    this._$blacklist = keys_default()(this);
+
+    this._hideProps();
+  }
+
+  _createClass(defaultReactiveStorage, [{
+    key: "_initConfig",
+    value: function _initConfig(config) {
+      var _this = this;
+
+      var store = getStoreByType(config.type);
+      if (!store) throw new Error(getErrorText('Wrong storage type')); // Получение хранилища
+
+      var value = store.getJSONItem(config.name); // Заполнение объекта данными из пресета
+
+      keys_default()(this._$preset).forEach(function (key) {
+        if (!~_this._$blacklist.indexOf(key)) _this[key] = _this._$preset[key];
+      }); // Совмещение данных из пресета с данными из хранилища
+
+
+      assign_default()(this, value);
+
+      this._fixTemplate(); // Обработка события изменения хранилища
+
+
+      window.addEventListener('storage', function (_ref) {
+        var storageArea = _ref.storageArea,
+            key = _ref.key;
+
+        if (_this._$store === storageArea && key === _this._$config.name) {
+          assign_default()(_this, store.getJSONItem(_this._$config.name));
+        }
+      });
+      this._$config = config;
+      this._$store = store;
+    } // Сокрытие служебных свойств
+
+  }, {
+    key: "_hideProps",
+    value: function _hideProps() {
+      var _this2 = this;
+
+      keys_default()(this).forEach(function (key) {
+        define_property_default()(_this2, key, {
+          enumerable: false
+        });
+      });
+    } // Функция приведения текущего хранилища к шаблону
+
+  }, {
+    key: "_fixTemplate",
+    value: function _fixTemplate() {
+      objToPattern(this, this._$preset);
+    } // Сохранение хранилища
+
+  }, {
+    key: "saveStorage",
+    value: function saveStorage() {
+      var _this3 = this;
+
+      var noNeedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
+
+      // Запуск сохранения осуществляется не при каждом вызове а максимум раз в минимальную задержку браузера
+      if (this._$timer === null) {
+        this._fixTemplate();
+
+        if (noNeedEvent) {
+          this._$store.setItem(this._$config.name, stringify_default()(this));
+
+          this._doChangehandlers();
+        } else {
+          this._$store.setEItem(this._$config.name, this);
+        }
+
+        this._$timer = setTimeout(function () {
+          return _this3._$timer = null;
+        }, 0);
+      } else {
+        this._$timer = setTimeout(function () {
+          return _this3._$timer = null;
+        }, 0);
+      }
+    } // Добавление события на изменение данных
+
+  }, {
+    key: "addChangeHandler",
+    value: function addChangeHandler(callback) {
+      this._$listeners.push(callback);
+    } // Удаление события
+
+  }, {
+    key: "removeChangeHandler",
+    value: function removeChangeHandler(callback) {
+      var index = this._$listeners.indexOf(callback);
+
+      if (~index) {
+        this._$listeners.splice(index, 1);
+      }
+    } // Запуск обработчиков
+
+  }, {
+    key: "_doChangehandlers",
+    value: function _doChangehandlers() {
+      var _this4 = this;
+
+      this._$listeners.forEach(function (handler) {
+        handler(_this4);
+      });
+    }
+  }]);
+
+  return defaultReactiveStorage;
+}();
+
+var mainClass_reactiveStorage =
+/*#__PURE__*/
+function (_defaultReactiveStora) {
+  _inherits(reactiveStorage, _defaultReactiveStora);
+
+  function reactiveStorage(preset) {
+    var _this5;
+
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      type: 'local',
+      name: '$RStore',
+      ttl: 60 * 60 * 24 * 1000 * 7
+    };
+    var listeners = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var onload = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function () {};
+
+    _classCallCheck(this, reactiveStorage);
+
+    _this5 = _possibleConstructorReturn(this, getPrototypeOf_getPrototypeOf(reactiveStorage).call(this));
+    _this5._$preset = fullCopy(preset);
+
+    _this5._initConfig(config);
+
+    _this5._$listeners = _this5._$listeners.concat(listeners);
+
+    _this5.saveStorage(false);
+
+    onload(_assertThisInitialized(_assertThisInitialized(_this5)));
+    return _this5;
+  }
+
+  return reactiveStorage;
+}(mainClass_defaultReactiveStorage);
+
+/* harmony default export */ var mainClass = (mainClass_reactiveStorage);
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
+var defineProperty = __webpack_require__("bd86");
+
+// EXTERNAL MODULE: ./src/vuexModule.js
+var vuexModule = __webpack_require__("abb0");
+
+// EXTERNAL MODULE: ./src/tools.js
+var tools = __webpack_require__("83af");
+
+// CONCATENATED MODULE: ./src/plugin.js
+
+
+
+
+
+
+
+
+var plugin_Plugin =
+/*#__PURE__*/
+function () {
+  function Plugin() {
+    _classCallCheck(this, Plugin);
+
+    this.storage = null;
+  }
+
+  _createClass(Plugin, [{
+    key: "install",
+    value: function install(Vue, _ref) {
+      var app = _ref.app,
+          _ref$type = _ref.type,
+          type = _ref$type === void 0 ? 'local' : _ref$type,
+          _ref$storageName = _ref.storageName,
+          storageName = _ref$storageName === void 0 ? '$RStore' : _ref$storageName,
+          _ref$propName = _ref.propName,
+          propName = _ref$propName === void 0 ? '$RStore' : _ref$propName,
+          _ref$ttl = _ref.ttl,
+          ttl = _ref$ttl === void 0 ? 60 * 60 * 24 * 1000 * 7 : _ref$ttl,
+          preset = _ref.preset,
+          _ref$listeners = _ref.listeners,
+          listeners = _ref$listeners === void 0 ? [] : _ref$listeners;
+      if (app === undefined) throw new Error('[ReactiveStorage] undefined app');
+      if (preset === undefined) throw new Error('[ReactiveStorage] undefined preset');
+      var config = {
+        type: type,
+        name: storageName,
+        ttl: ttl
+      };
+      this.storage = new mainClass(preset, config, listeners);
+      Object(tools["b" /* injectStorage */])(Vue, app, propName, this.storage);
+    }
+  }, {
+    key: "injectVuex",
+    value: function injectVuex(propName) {
+      var store = this.app.store;
+
+      if (store) {
+        store.registerModule(propName, Object(vuexModule["a" /* default */])(this.storage));
+      } else if (false) {}
+    }
+  }, {
+    key: "injectProp",
+    value: function injectProp(propName) {
+      var Vue = this.Vue,
+          app = this.app,
+          storage = this.storage;
+
+      if (Object(tools["a" /* hasOwnProperty */])(app, propName) || Object(tools["a" /* hasOwnProperty */])(Vue.prototype, propName)) {
+        throw new Error('[ReactiveStorage] propName is already used');
+      }
+
+      app[propName] = storage;
+      Vue.use(function () {
+        Vue.mixin({
+          data: function data() {
+            return Object(defineProperty["a" /* default */])({}, propName, storage);
+          }
+        });
+
+        define_property_default()(Vue.prototype, propName, {
+          get: function get() {
+            return storage;
+          }
+        });
+      });
+    }
+  }, {
+    key: "makeReactiveProp",
+    value: function makeReactiveProp(propName) {
+      var app = this.app,
+          storage = this.storage;
+      if (!Object(tools["a" /* hasOwnProperty */])(app, 'watch')) app.watch = {};
+      if (Object(tools["a" /* hasOwnProperty */])(app.watch, propName)) throw new Error('[ReactiveStorage] propName is already used in watchers');
+      app.watch[propName] = {
+        handler: function handler() {
+          storage.saveStorage();
+        },
+        deep: true
+      };
+    }
+  }]);
+
+  return Plugin;
+}();
+
+
+// CONCATENATED MODULE: ./src/index.js
+
+
+
+var src_plugin = new plugin_Plugin();
+window.vueReactiveStoragesPlugin = src_plugin;
+var version = '1.0.6';
+
+/* harmony default export */ var src = (src_plugin);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
+/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
+/* concated harmony reexport ReactiveStorage */__webpack_require__.d(__webpack_exports__, "ReactiveStorage", function() { return mainClass; });
+/* concated harmony reexport injectStorage */__webpack_require__.d(__webpack_exports__, "injectStorage", function() { return tools["b" /* injectStorage */]; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src["a" /* default */]);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
 
 
 

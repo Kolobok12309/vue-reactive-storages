@@ -53,7 +53,7 @@ new Vue(app).$mount('#app');
 
 `propName` - Name of prop in Vue components and name of Vuex module (if exist) Default `$RStore`
 
-`listeners` - Array with listeners, once argument is storage Default []
+`listeners` - Array with listeners on change data, once argument is storage Default []
 
 ## Api
 
@@ -119,4 +119,83 @@ store.addChangeHandler(log);
 store.test = '1';
 store.removeChangeHandler(log);
 store.test = '2';
+```
+
+# Separate api
+
+## reactiveStorage
+
+Class for creating reactive storages
+
+### Arguments
+
+`preset` - Required arg to set scheme
+
+#### config
+
+`type` - Type of storage 'local' | 'session' Default `local`
+
+`name` - Name of prop in local/sessionStorage Default `$RStore`
+
+`listeners` - Array with listeners on change data, once argument is storage Default []
+
+### Example
+```js
+import { ReactiveStorage } from 'vue-reactive-storages';
+
+const preset = {
+    user: {
+        token: '',
+        id: '',
+        login: '',
+        role: '',
+    },
+};
+const config = {
+    type: 'local',
+    name: '$RStore',
+};
+
+export default new ReactiveStorage(preset, config);
+```
+
+## injectStorage
+
+function to inject storage in Vue
+
+### Arguments
+
+`Vue` - Vue object
+
+`app` - Required prop to create reactive storage and inject vuex
+
+`propName` - Name of prop in Vue components and name of Vuex module (if exist) Default `$RStore`
+
+`storage` - Object of injectable `ReactiveStorage`
+
+### Example
+```js
+import Vue from 'vue';
+import { injectStorage } from 'vue-reactive-storages';
+import reactiveStore from './store';
+
+const app = {
+    router,
+    store,
+    render: h => h(App),
+}
+
+injectStorage(Vue, app, '$RStore', reactiveStore);
+```
+
+## version
+
+Version of packet
+
+### Example
+
+```js
+import { version } from 'vue-reactive-storages';
+
+console.log(version);
 ```
