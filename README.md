@@ -9,7 +9,11 @@ npm install --save vue-reactive-storages
 Using cdn:
 ```html
 <script src="https://unpkg.com/vue-reactive-storages"></script>
-<script>console.log(vueReactiveStoragesPlugin);</script>
+<script>
+const plugin = vueReactiveStoragesPlugin;
+console.log(plugin);
+console.log(plugin.version, plugin.ReactiveStorage, plugin.injectStorage);
+</script>
 ```
 
 ## Example

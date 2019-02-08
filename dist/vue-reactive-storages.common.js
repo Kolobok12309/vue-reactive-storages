@@ -3409,14 +3409,17 @@ function () {
 
 
 var src_plugin = new plugin_Plugin();
+var version = '1.0.7';
+src_plugin.version = version;
+src_plugin.ReactiveStorage = mainClass;
+src_plugin.injectStorage = tools["b" /* injectStorage */];
 window.vueReactiveStoragesPlugin = src_plugin;
-var version = '1.0.6';
 
 /* harmony default export */ var src = (src_plugin);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
 /* concated harmony reexport ReactiveStorage */__webpack_require__.d(__webpack_exports__, "ReactiveStorage", function() { return mainClass; });
 /* concated harmony reexport injectStorage */__webpack_require__.d(__webpack_exports__, "injectStorage", function() { return tools["b" /* injectStorage */]; });
+/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
