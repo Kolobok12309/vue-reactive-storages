@@ -3131,7 +3131,6 @@ function () {
   function defaultReactiveStorage() {
     _classCallCheck(this, defaultReactiveStorage);
 
-    this._$timer = null;
     this._$config = {};
     this._$preset = {};
     this._$data = {};
@@ -3206,29 +3205,17 @@ function () {
   }, {
     key: "saveStorage",
     value: function saveStorage() {
-      var _this3 = this;
-
       var noNeedEvent = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 
-      // Запуск сохранения осуществляется не при каждом вызове а максимум раз в минимальную задержку браузера
-      if (this._$timer === null) {
-        this._fixTemplate();
+      // Запуск сохранения осуществляется не при каждом вызове
+      this._fixTemplate();
 
-        if (noNeedEvent) {
-          this._$store.setItem(this._$config.name, stringify_default()(this));
+      if (noNeedEvent) {
+        this._$store.setItem(this._$config.name, stringify_default()(this));
 
-          this._doChangehandlers();
-        } else {
-          this._$store.setEItem(this._$config.name, this);
-        }
-
-        this._$timer = setTimeout(function () {
-          return _this3._$timer = null;
-        }, 0);
+        this._doChangehandlers();
       } else {
-        this._$timer = setTimeout(function () {
-          return _this3._$timer = null;
-        }, 0);
+        this._$store.setEItem(this._$config.name, this);
       }
     } // Добавление события на изменение данных
 
@@ -3251,10 +3238,10 @@ function () {
   }, {
     key: "_doChangehandlers",
     value: function _doChangehandlers() {
-      var _this4 = this;
+      var _this3 = this;
 
       this._$listeners.forEach(function (handler) {
-        handler(_this4);
+        handler(_this3);
       });
     }
   }]);
@@ -3268,7 +3255,7 @@ function (_defaultReactiveStora) {
   _inherits(reactiveStorage, _defaultReactiveStora);
 
   function reactiveStorage(preset) {
-    var _this5;
+    var _this4;
 
     var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
       type: 'local',
@@ -3280,17 +3267,17 @@ function (_defaultReactiveStora) {
 
     _classCallCheck(this, reactiveStorage);
 
-    _this5 = _possibleConstructorReturn(this, getPrototypeOf_getPrototypeOf(reactiveStorage).call(this));
-    _this5._$preset = fullCopy(preset);
+    _this4 = _possibleConstructorReturn(this, getPrototypeOf_getPrototypeOf(reactiveStorage).call(this));
+    _this4._$preset = fullCopy(preset);
 
-    _this5._initConfig(config);
+    _this4._initConfig(config);
 
-    _this5._$listeners = _this5._$listeners.concat(listeners);
+    _this4._$listeners = _this4._$listeners.concat(listeners);
 
-    _this5.saveStorage(false);
+    _this4.saveStorage(false);
 
-    onload(_assertThisInitialized(_assertThisInitialized(_this5)));
-    return _this5;
+    onload(_assertThisInitialized(_assertThisInitialized(_this4)));
+    return _this4;
   }
 
   return reactiveStorage;

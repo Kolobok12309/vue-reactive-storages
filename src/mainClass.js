@@ -83,7 +83,6 @@ function objToPattern(obj, pattern) {
 
 class defaultReactiveStorage {
     constructor() {
-        this._$timer = null;
         this._$config = {};
         this._$preset = {};
         this._$data = {};
@@ -145,18 +144,13 @@ class defaultReactiveStorage {
 
     // Сохранение хранилища
     saveStorage(noNeedEvent = true) {
-        // Запуск сохранения осуществляется не при каждом вызове а максимум раз в минимальную задержку браузера
-        if (this._$timer === null) {
-            this._fixTemplate();
-            if (noNeedEvent) {
-                this._$store.setItem(this._$config.name, JSON.stringify(this));
-                this._doChangehandlers();
-            } else {
-                this._$store.setEItem(this._$config.name, this);
-            }
-            this._$timer = setTimeout(() => (this._$timer = null), 0);
+        // Запуск сохранения осуществляется не при каждом вызове
+        this._fixTemplate();
+        if (noNeedEvent) {
+            this._$store.setItem(this._$config.name, JSON.stringify(this));
+            this._doChangehandlers();
         } else {
-            this._$timer = setTimeout(() => (this._$timer = null), 0);
+            this._$store.setEItem(this._$config.name, this);
         }
     }
 
