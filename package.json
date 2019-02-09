@@ -1,6 +1,6 @@
 {
   "name": "vue-reactive-storages",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "homepage": "https://github.com/Kolobok12309/vue-reactive-storages",
   "license": "MIT",
   "description": "Plugin for vue and local/sessionStorage",
