@@ -3405,7 +3405,7 @@ function () {
 
 
 var src_plugin = new plugin_Plugin();
-var version = '1.0.7';
+var version = '1.0.8';
 src_plugin.version = version;
 src_plugin.ReactiveStorage = mainClass;
 src_plugin.injectStorage = tools["b" /* injectStorage */];
