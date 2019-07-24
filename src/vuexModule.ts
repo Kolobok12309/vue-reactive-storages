@@ -1,4 +1,6 @@
-export default reactiveStorage => ({
+import { ReactiveStorageMixin } from '@/mainClass';
+
+export default <S>(reactiveStorage: ReactiveStorageMixin<S>) => ({
     state: reactiveStorage,
     mutations: {
         saveReactiveStorage() {

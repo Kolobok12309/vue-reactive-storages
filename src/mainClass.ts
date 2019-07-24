@@ -1,33 +1,52 @@
+import { ReactiveStorageOptions, ReactiveStorageHandler } from './types';
+
+declare global {
+    interface Storage {
+        setEItem(key: string, value: any): void;
+        getJSONItem(key: string): any;
+    }
+    // Fix my TS Version
+    interface StorageEvent extends Event {
+        initStorageEvent(typeArg: string, canBubbleArg: boolean, cancelableArg: boolean, keyArg: string, oldValueArg: any, newValueArg: any, urlArg: string, storageAreaArg: Storage): void;
+    }
+}
+
 // Функция глубокого копирования аргумента
-function fullCopy(obj) {
+function fullCopy(obj: any): any {
     return JSON.parse(JSON.stringify(obj));
 }
 
-// Функция для создания строки с ошибкой
-function getErrorText(text) {
-    return `[ReactiveStorage] ${text}`;
+// Класс своих ошибок
+class StorageError extends Error {
+    message: string;
+    name: string;
+    stack!: string;
+
+    constructor(message: string) {
+        message = `[ReactiveStorage] ${message}`;
+        super(message);
+        this.message = message;
+        this.name = (<any> this.constructor).name;
+    }
 }
 
+
 // Получение хранилища по типу
-function getStoreByType(type) {
-    let result;
+function getStoreByType(type: 'local' | 'session'): Storage {
     switch (type) {
     case 'local':
-        result = window.localStorage;
-        break;
+        return window.localStorage;
     case 'session':
-        result = window.sessionStorage;
-        break;
+        return window.sessionStorage;
     default:
-        result = null;
-        break;
+        new StorageError('Wrong storage type');
+        return window.localStorage;
     }
-    return result;
 }
 
 // Модифицированная функция записи в хранилище с созданием события на текущей вкладке и преобразованием сложных типов к строке
-function setEItem(key, value) {
-    let modifiedValue;
+function setEItem(this: Storage, key: string, value: any) {
+    let modifiedValue: any;
     switch (typeof value) {
     // В случае если подан объект, необходимо его перевести в строку путем JSON кодирования
     case 'object':
@@ -35,7 +54,7 @@ function setEItem(key, value) {
         break;
     case 'function':
     // В случае если подана функция выбрасываем ошибку т.к.
-        throw new Error(getErrorText("Function can't be in storage"));
+        throw new StorageError('Function can\'t be in storage');
     default:
     // В ином случае просто записать значение
         modifiedValue = value;
@@ -54,10 +73,10 @@ function setEItem(key, value) {
 }
 
 // Получение элемента, при возможности распаршенный
-function getJSONItem(key) {
+function getJSONItem(this: Storage,key: string): any {
     // Получение элемента из local/sessionStorage
-    const value = this.getItem(key);
-    let modifiedValue;
+    const value: any = this.getItem(key);
+    let modifiedValue: any;
     try {
         // Попытка распарсить из json
         modifiedValue = JSON.parse(value);
@@ -68,8 +87,16 @@ function getJSONItem(key) {
     return modifiedValue;
 }
 
+// Установка в прототип хранилищ своих функций
+if (!Storage.prototype.setEItem) {
+    Storage.prototype.setEItem = setEItem;
+}
+if (!Storage.prototype.getJSONItem) {
+    Storage.prototype.getJSONItem = getJSONItem;
+}
+
 // Приведение объекта к шаблону через рекурсию
-function objToPattern(obj, pattern) {
+function objToPattern(obj: any, pattern: any): any {
     Object.keys(pattern).forEach((key) => {
         if (key in obj) {
             if (obj[key] && typeof obj[key] === 'object') {
@@ -81,40 +108,52 @@ function objToPattern(obj, pattern) {
     });
 }
 
-class defaultReactiveStorage {
-    constructor() {
-        this._$config = {};
-        this._$preset = {};
-        this._$data = {};
-        this._$handlers = {};
-        this._$store = {};
-        this._$blacklist = [];
-        this._$listeners = [];
+export class _ReactiveStorage<S> {
+    private _$config: ReactiveStorageOptions;
+    private _$preset: S;
+    private _$store: Storage;
+    private _$blacklist: string[];
+    private _$listeners: ReactiveStorageHandler<S>[];
+    [key: string]: any;
 
-        // Установка в прототип хранилищ своих функций
-        if (!Storage.prototype.setEItem) {
-            Storage.prototype.setEItem = setEItem;
-        }
-        if (!Storage.prototype.getJSONItem) {
-            Storage.prototype.getJSONItem = getJSONItem;
-        }
-
+    constructor(
+        preset: S,
+        config = { type: 'local', name: '$RStore', ttl: 60 * 60 * 24 * 1000 * 7 } as ReactiveStorageOptions,
+        listeners = [] as ReactiveStorageHandler<S>[],
+        onload = (store: _ReactiveStorage<S> | S | ReactiveStorageMixin<S>): void => {}
+    ) {
         this._$blacklist = Object.keys(this);
+
+        this._$config = config;
+        this._$store = getStoreByType(this._$config.type);
+        this._$preset = preset;
+        this._$listeners = listeners;
+
         this._hideProps();
+
+        this._initConfig();
+        this.saveStorage(false);
+
+        onload(this);
     }
 
-    _initConfig(config) {
-        const store = getStoreByType(config.type);
-        if (!store) throw new Error(getErrorText('Wrong storage type'));
+    _initConfig(): void {
+        const config = this._$config;
+        const store = this._$store;
+
         // Получение хранилища
         const value = store.getJSONItem(config.name);
         // Заполнение объекта данными из пресета
-        Object.keys(this._$preset).forEach((key) => {
-            if (!~this._$blacklist.indexOf(key)) this[key] = this._$preset[key];
-        });
+        for (let key in this._$preset) {
+            if (!~this._$blacklist.indexOf(key)) this[key as string] = this._$preset[key];
+        }
+        // Object.keys(this._$preset).forEach((key) => {
+        //     if (!~this._$blacklist.indexOf(key)) this[key] = this._$preset[key];
+        // });
 
         // Совмещение данных из пресета с данными из хранилища
-        Object.assign(this, value);
+        // Object.assign(this, value);
+        if (value) Object.assign(this, value);
         this._fixTemplate();
 
         // Обработка события изменения хранилища
@@ -123,13 +162,10 @@ class defaultReactiveStorage {
                 Object.assign(this, store.getJSONItem(this._$config.name));
             }
         });
-
-        this._$config = config;
-        this._$store = store;
     }
 
     // Сокрытие служебных свойств
-    _hideProps() {
+    _hideProps(): void {
         Object.keys(this).forEach((key) => {
             Object.defineProperty(this, key, {
                 enumerable: false,
@@ -138,12 +174,12 @@ class defaultReactiveStorage {
     }
 
     // Функция приведения текущего хранилища к шаблону
-    _fixTemplate() {
+    _fixTemplate(): void {
         objToPattern(this, this._$preset);
     }
 
     // Сохранение хранилища
-    saveStorage(noNeedEvent = true) {
+    saveStorage(noNeedEvent: boolean = true) {
         // Запуск сохранения осуществляется не при каждом вызове
         this._fixTemplate();
         if (noNeedEvent) {
@@ -155,12 +191,12 @@ class defaultReactiveStorage {
     }
 
     // Добавление события на изменение данных
-    addChangeHandler(callback) {
+    addChangeHandler(callback: ReactiveStorageHandler<S>) {
         this._$listeners.push(callback);
     }
 
     // Удаление события
-    removeChangeHandler(callback) {
+    removeChangeHandler(callback: ReactiveStorageHandler<S>) {
         const index = this._$listeners.indexOf(callback);
         if (~index) {
             this._$listeners.splice(index, 1);
@@ -175,15 +211,25 @@ class defaultReactiveStorage {
     }
 }
 
-class reactiveStorage extends defaultReactiveStorage {
-    constructor(preset, config = { type: 'local', name: '$RStore', ttl: 60 * 60 * 24 * 1000 * 7 }, listeners = [], onload = () => { }) {
-        super();
-        this._$preset = fullCopy(preset);
-        this._initConfig(config);
-        this._$listeners = this._$listeners.concat(listeners);
-        this.saveStorage(false);
-        onload(this);
-    }
+export type ReactiveStorageMixin<S> = _ReactiveStorage<S> & S;
+
+export type ReactiveStorageType = {
+    new <S>(
+        preset: S,
+        config?: ReactiveStorageOptions,
+        listeners?: ReactiveStorageHandler<S>[],
+        onload?: (store: _ReactiveStorage<S> | S | ReactiveStorageMixin<S>) => void
+    ): ReactiveStorageMixin<S>;
+
+    _initConfig(): void;
+    _hideProps(): void;
+    _fixTemplate(): void;
+    saveStorage(noNeedEvent: boolean): void;
+    addChangeHandler(callback: _ReactiveStorage<any>): void;
+    removeChangeHandler(callback: _ReactiveStorage<any>): void;
+    _doChangehandlers(): void;
 }
 
-export default reactiveStorage;
+const ReactiveStorage = _ReactiveStorage as ReactiveStorageType;
+
+export default ReactiveStorage;

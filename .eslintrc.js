@@ -1,12 +1,15 @@
 module.exports = {
     root: true,
+
     env: {
         node: true,
     },
+
     extends: [
         'plugin:vue/essential',
         '@vue/airbnb',
     ],
+
     rules: {
         indent: [
             'error',
@@ -48,7 +51,14 @@ module.exports = {
         ],
         'vue/order-in-components': 'error',
     },
+
     parserOptions: {
-        parser: 'babel-eslint',
+        parser: '@typescript-eslint/parser',
     },
+
+    'extends': [
+      'plugin:vue/essential',
+      '@vue/airbnb',
+      '@vue/typescript'
+    ]
 };
