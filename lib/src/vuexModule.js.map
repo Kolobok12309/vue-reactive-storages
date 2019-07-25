@@ -1,0 +1,1 @@
+{"version":3,"file":"vuexModule.js","sourceRoot":"","sources":["../../src/vuexModule.ts"],"names":[],"mappings":"AAGA,eAAe,CAAI,eAA2C,EAA4C,EAAE,CAAC,CAAC;IAC1G,KAAK,EAAE,eAAe;IACtB,SAAS,EAAE;QACP,mBAAmB;YACf,eAAe,CAAC,WAAW,CAAC,IAAI,CAAC,CAAC;QACtC,CAAC;KACJ;IACD,OAAO,EAAE;QACL,kBAAkB;YACd,OAAO,eAAe,CAAC;QAC3B,CAAC;KACJ;CACJ,CAAC,CAAC"}

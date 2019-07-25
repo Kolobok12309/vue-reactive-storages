@@ -3524,6 +3524,10 @@ function typeof_typeof(obj) {
 
   return typeof_typeof(obj);
 }
+// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js
+var stringify = __webpack_require__("f499");
+var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
+
 // EXTERNAL MODULE: ./node_modules/core-js/modules/es6.function.name.js
 var es6_function_name = __webpack_require__("7f7f");
 
@@ -3684,10 +3688,6 @@ function wrapNativeSuper_wrapNativeSuper(Class) {
 
   return wrapNativeSuper_wrapNativeSuper(Class);
 }
-// EXTERNAL MODULE: ./node_modules/@babel/runtime-corejs2/core-js/json/stringify.js
-var stringify = __webpack_require__("f499");
-var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
-
 // CONCATENATED MODULE: ./src/mainClass.ts
 
 
@@ -3702,13 +3702,7 @@ var stringify_default = /*#__PURE__*/__webpack_require__.n(stringify);
 
 
 
-
-// Функция глубокого копирования аргумента
-function fullCopy(obj) {
-  return JSON.parse(stringify_default()(obj));
-} // Класс своих ошибок
-
-
+// Класс своих ошибок
 var mainClass_StorageError =
 /*#__PURE__*/
 function (_Error) {
@@ -3727,7 +3721,11 @@ function (_Error) {
   }
 
   return StorageError;
-}(wrapNativeSuper_wrapNativeSuper(Error)); // Получение хранилища по типу
+}(wrapNativeSuper_wrapNativeSuper(Error)); // Функция глубокого копирования аргумента
+
+function fullCopy(obj) {
+  return JSON.parse(stringify_default()(obj));
+} // Получение хранилища по типу
 
 
 function getStoreByType(type) {
@@ -3824,7 +3822,6 @@ function () {
       ttl: 60 * 60 * 24 * 1000 * 7
     };
     var listeners = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
-    var onload = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (store) {};
 
     _classCallCheck(this, _ReactiveStorage);
 
@@ -3839,7 +3836,6 @@ function () {
     this._initConfig();
 
     this.saveStorage(false);
-    onload(this);
   }
 
   _createClass(_ReactiveStorage, [{
@@ -3905,7 +3901,7 @@ function () {
       if (noNeedEvent) {
         this._$store.setItem(this._$config.name, stringify_default()(this));
 
-        this._doChangehandlers();
+        this._doChangeHandlers();
       } else {
         this._$store.setEItem(this._$config.name, this);
       }
@@ -3928,8 +3924,8 @@ function () {
     } // Запуск обработчиков
 
   }, {
-    key: "_doChangehandlers",
-    value: function _doChangehandlers() {
+    key: "_doChangeHandlers",
+    value: function _doChangeHandlers() {
       var _this4 = this;
 
       this._$listeners.forEach(function (handler) {
@@ -3940,7 +3936,23 @@ function () {
 
   return _ReactiveStorage;
 }();
-var ReactiveStorage = mainClass_ReactiveStorage;
+var ReactiveStorage = {
+  create: function create(preset) {
+    var config = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {
+      type: 'local',
+      name: '$RStore',
+      ttl: 60 * 60 * 24 * 1000 * 7
+    };
+    var listeners = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : [];
+    var onload = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : function (store) {};
+
+    var _newReactiveStorage = new mainClass_ReactiveStorage(preset, config, listeners);
+
+    var newReactiveStorage = _newReactiveStorage;
+    onload(newReactiveStorage);
+    return newReactiveStorage;
+  }
+};
 /* harmony default export */ var mainClass = (ReactiveStorage);
 // CONCATENATED MODULE: ./node_modules/@babel/runtime-corejs2/helpers/esm/defineProperty.js
 
@@ -3980,8 +3992,7 @@ function _defineProperty(obj, key, value) {
 
 function tools_hasOwnProperty(obj, key) {
   return Object.prototype.hasOwnProperty.call(obj, key);
-} // eslint-disable-next-line
-
+}
 function autoVueInject(vuePlugin) {
   var globalVue = null;
 
@@ -3999,12 +4010,10 @@ function autoVueInject(vuePlugin) {
     (_globalVue = globalVue).use.apply(_globalVue, [vuePlugin].concat(args));
   }
 }
-
 function fixKey(key) {
   if (key[0] === '$') return key;
   return "$".concat(key);
 }
-
 function injectVuex(app, propName, storage) {
   var key = fixKey(propName);
   var store = app.store;
@@ -4013,7 +4022,6 @@ function injectVuex(app, propName, storage) {
     store.registerModule(key, vuexModule(storage));
   } else if (false) {}
 }
-
 function injectProp(Vue, app, propName, storage) {
   var key = fixKey(propName);
 
@@ -4036,7 +4044,6 @@ function injectProp(Vue, app, propName, storage) {
     });
   });
 }
-
 function makeReactiveProp(app, propName, storage) {
   var key = fixKey(propName);
   if (!app.watch) app.watch = {};
@@ -4048,7 +4055,6 @@ function makeReactiveProp(app, propName, storage) {
     deep: true
   };
 }
-
 function injectStorage(Vue, app) {
   var propName = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '$RStore';
   var storage = arguments.length > 3 ? arguments[3] : undefined;
@@ -4066,11 +4072,10 @@ function injectStorage(Vue, app) {
 var plugin_Plugin =
 /*#__PURE__*/
 function () {
-  function Plugin(version) {
+  function Plugin() {
     _classCallCheck(this, Plugin);
 
     this.storage = null;
-    this.version = version;
     this.injectStorage = injectStorage;
     this.ReactiveStorage = mainClass;
   }
@@ -4097,7 +4102,7 @@ function () {
         name: storageName,
         ttl: ttl
       };
-      this.storage = new mainClass(preset, config, listeners);
+      this.storage = mainClass.create(preset, config, listeners);
       injectStorage(Vue, app, propName, this.storage);
     }
   }]);
@@ -4110,15 +4115,15 @@ function () {
 
 
 
-var main_version = '1.0.9';
-var main_plugin = new plugin_Plugin(main_version);
-window.vueReactiveStoragesPlugin = main_plugin;
+var version = '1.0.10';
+plugin_Plugin.version = version;
+window.vueReactiveStoragesPlugin = plugin_Plugin;
 
-/* harmony default export */ var main = (main_plugin);
+/* harmony default export */ var main = (plugin_Plugin);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 /* concated harmony reexport ReactiveStorage */__webpack_require__.d(__webpack_exports__, "ReactiveStorage", function() { return mainClass; });
 /* concated harmony reexport injectStorage */__webpack_require__.d(__webpack_exports__, "injectStorage", function() { return injectStorage; });
-/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return main_version; });
+/* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (main);

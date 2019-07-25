@@ -160,7 +160,7 @@ const config = {
     name: '$RStore',
 };
 
-export default new ReactiveStorage(preset, config);
+export default ReactiveStorage.create(preset, config);
 ```
 
 ## injectStorage

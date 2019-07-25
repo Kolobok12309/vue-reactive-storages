@@ -6,10 +6,12 @@
     "jsx": "preserve",
     "importHelpers": true,
     "moduleResolution": "node",
+    "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
+    "outDir": "lib",
     "types": [
       "webpack-env"
     ],

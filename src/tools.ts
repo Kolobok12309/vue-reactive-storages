@@ -1,12 +1,9 @@
-import ReactiveStorage, { ReactiveStorageType, ReactiveStorageMixin } from '@/mainClass';
-import vuexModule from './vuexModule';
-import Plugin from './plugin'
 import Vue, { VueConstructor, ComponentOptions } from 'vue';
 import { Store } from 'vuex';
+import { ReactiveStorageInstance } from './mainClass';
+import vuexModule from './vuexModule';
 
-export function hasOwnProperty(obj: object, key: string): boolean {
-    return Object.prototype.hasOwnProperty.call(obj, key);
-}
+import Plugin from './plugin';
 
 declare global {
     interface Window {
@@ -20,8 +17,10 @@ declare module 'vue/types/options' {
     }
 }
 
+export function hasOwnProperty(obj: object, key: string): boolean {
+    return Object.prototype.hasOwnProperty.call(obj, key);
+}
 
-// eslint-disable-next-line
 export function autoVueInject<S>(vuePlugin: Plugin<S>, ...args: any[]): void {
     let globalVue = null;
     if (window !== undefined) {
@@ -33,12 +32,12 @@ export function autoVueInject<S>(vuePlugin: Plugin<S>, ...args: any[]): void {
     }
 }
 
-function fixKey(key: string): string {
+export function fixKey(key: string): string {
     if (key[0] === '$') return key;
     return `$${key}`;
 }
 
-function injectVuex<S>(app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageMixin<S>):void {
+export function injectVuex<S>(app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageInstance<S>):void {
     const key = fixKey(propName);
     const { store } = app;
     if (store) {
@@ -49,7 +48,7 @@ function injectVuex<S>(app: ComponentOptions<Vue>, propName: string, storage: Re
     }
 }
 
-function injectProp<S>(Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageMixin<S>):void {
+export function injectProp<S>(Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageInstance<S>):void {
     const key = fixKey(propName);
     if (hasOwnProperty(app, key) || hasOwnProperty(Vue.prototype, key)) {
         throw new Error('[ReactiveStorage] propName is already used');
@@ -73,7 +72,7 @@ function injectProp<S>(Vue: VueConstructor, app: ComponentOptions<Vue>, propName
     });
 }
 
-function makeReactiveProp<S>(app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageMixin<S>):void {
+export function makeReactiveProp<S>(app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageInstance<S>):void {
     const key = fixKey(propName);
     if (!app.watch) app.watch = {};
     if (hasOwnProperty(app.watch, key)) throw new Error('[ReactiveStorage] propName is already used in watchers');
@@ -86,7 +85,7 @@ function makeReactiveProp<S>(app: ComponentOptions<Vue>, propName: string, stora
     };
 }
 
-export function injectStorage<S>(Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string = '$RStore', storage: ReactiveStorageMixin<S>): void {
+export function injectStorage<S>(Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string = '$RStore', storage: ReactiveStorageInstance<S>): void {
     const key = fixKey(propName);
     injectVuex<S>(app, key, storage);
     injectProp<S>(Vue, app, key, storage);

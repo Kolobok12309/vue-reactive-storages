@@ -1,19 +1,37 @@
-import { ReactiveStorageHandler, ReactiveStorageOptions } from './types/index';
-import ReactiveStorage, { ReactiveStorageMixin, ReactiveStorageType } from './mainClass';
 import Vue, { VueConstructor, ComponentOptions } from 'vue';
+import ReactiveStorage, { ReactiveStorageInstance, ReactiveStorageInterface } from './mainClass';
+import { ReactiveStorageOptions, ReactiveStorageHandler } from './types';
 import { injectStorage } from './tools';
 
+export interface PluginOptions<S> {
+    app: ComponentOptions<Vue>,
+    type?: 'local' | 'session',
+    storageName?: string,
+    propName?: string,
+    ttl?: number,
+    preset: S,
+    listeners?: ReactiveStorageHandler<S>[],
+}
 
-export default class Plugin<S> {
-    storage: ReactiveStorageMixin<S> | null;
+interface PluginI<S> {
+    storage: ReactiveStorageInstance<S> | null;
 
-    version: string;
-    ReactiveStorage: ReactiveStorageType;
-    injectStorage: (Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageMixin<S>) => void;
+    ReactiveStorage: ReactiveStorageInterface;
+    injectStorage: (Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageInstance<S>) => void;
 
-    constructor(version: string) {
+    install(Vue: VueConstructor, options: PluginOptions<S>): void;
+}
+
+export default class Plugin<S> implements PluginI<S> {
+    storage: ReactiveStorageInstance<S> | null;
+
+    static version: string;
+
+    ReactiveStorage: ReactiveStorageInterface;
+    injectStorage: (Vue: VueConstructor, app: ComponentOptions<Vue>, propName: string, storage: ReactiveStorageInstance<S>) => void;
+
+    constructor() {
         this.storage = null;
-        this.version = version;
         this.injectStorage = injectStorage;
         this.ReactiveStorage = ReactiveStorage;
     }
@@ -26,15 +44,7 @@ export default class Plugin<S> {
         ttl = 60 * 60 * 24 * 1000 * 7,
         preset,
         listeners = [],
-    }: {
-        app: ComponentOptions<Vue>,
-        type: 'local' | 'session',
-        storageName: string,
-        propName: string,
-        ttl: number,
-        preset: S,
-        listeners: ReactiveStorageHandler<S>[],
-    }) {
+    }: PluginOptions<S>): void {
         if (app === undefined) throw new Error('[ReactiveStorage] undefined app');
         if (preset === undefined) throw new Error('[ReactiveStorage] undefined preset');
 
@@ -44,7 +54,7 @@ export default class Plugin<S> {
             ttl,
         };
 
-        this.storage = new ReactiveStorage<S>(preset, config, listeners);
+        this.storage = ReactiveStorage.create<S>(preset, config, listeners);
 
         injectStorage(Vue, app, propName, this.storage);
     }
