@@ -4,12 +4,12 @@
   "description": "Plugin for vue and local/sessionStorage",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "tsc && vue-cli-service build --target lib --name vue-reactive-storages src/main.ts",
+    "build": "tsc && vue-cli-service build --target lib --name vue-reactive-storages src/index.ts",
     "lint": "vue-cli-service lint"
   },
-  "main": "lib/src/main.js",
-  "module": "lib/src/main.js",
-  "typings": "lib/src/main.d.ts",
+  "main": "lib/src/index.js",
+  "module": "lib/src/index.js",
+  "typings": "lib/src/index.d.ts",
   "unpkg": "dist/vue-reactive-storages.umd.min.js",
   "dependencies": {
     "vue": "^2.6.10",

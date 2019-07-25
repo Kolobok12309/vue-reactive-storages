@@ -4130,7 +4130,7 @@ function () {
 // EXTERNAL MODULE: ./src/types.ts
 var types = __webpack_require__("a76d");
 
-// CONCATENATED MODULE: ./src/main.ts
+// CONCATENATED MODULE: ./src/index.ts
 
 
 
@@ -4142,7 +4142,7 @@ var version = '1.0.10';
 plugin_Plugin.version = version;
 window.vueReactiveStoragesPlugin = plugin_Plugin;
 
-/* harmony default export */ var main = (plugin_Plugin);
+/* harmony default export */ var src = (plugin_Plugin);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
 /* concated harmony reexport injectStorage */__webpack_require__.d(__webpack_exports__, "injectStorage", function() { return injectStorage; });
 /* concated harmony reexport makeReactiveProp */__webpack_require__.d(__webpack_exports__, "makeReactiveProp", function() { return makeReactiveProp; });
@@ -4159,7 +4159,7 @@ window.vueReactiveStoragesPlugin = plugin_Plugin;
 /* concated harmony reexport ReactiveStorageVuexModule */__webpack_require__.d(__webpack_exports__, "ReactiveStorageVuexModule", function() { return vuexModule; });
 
 
-/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (main);
+/* harmony default export */ var entry_lib = __webpack_exports__["default"] = (src);
 
 
 
