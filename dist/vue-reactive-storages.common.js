@@ -2612,6 +2612,13 @@ module.exports = __webpack_require__("aa28");
 
 /***/ }),
 
+/***/ "a76d":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "aa28":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4111,7 +4118,14 @@ function () {
 }();
 
 
+// EXTERNAL MODULE: ./src/types.ts
+var types = __webpack_require__("a76d");
+
 // CONCATENATED MODULE: ./src/main.ts
+
+
+
+
 
 
 
@@ -4121,9 +4135,19 @@ window.vueReactiveStoragesPlugin = plugin_Plugin;
 
 /* harmony default export */ var main = (plugin_Plugin);
 // CONCATENATED MODULE: ./node_modules/@vue/cli-service/lib/commands/build/entry-lib.js
-/* concated harmony reexport ReactiveStorage */__webpack_require__.d(__webpack_exports__, "ReactiveStorage", function() { return mainClass; });
 /* concated harmony reexport injectStorage */__webpack_require__.d(__webpack_exports__, "injectStorage", function() { return injectStorage; });
+/* concated harmony reexport makeReactiveProp */__webpack_require__.d(__webpack_exports__, "makeReactiveProp", function() { return makeReactiveProp; });
+/* concated harmony reexport injectProp */__webpack_require__.d(__webpack_exports__, "injectProp", function() { return injectProp; });
+/* concated harmony reexport injectVuex */__webpack_require__.d(__webpack_exports__, "injectVuex", function() { return injectVuex; });
+/* concated harmony reexport ReactiveStorageOptions */__webpack_require__.d(__webpack_exports__, "ReactiveStorageOptions", function() { return types["ReactiveStorageOptions"]; });
+/* concated harmony reexport ReactiveStorageHandler */__webpack_require__.d(__webpack_exports__, "ReactiveStorageHandler", function() { return types["ReactiveStorageHandler"]; });
+/* concated harmony reexport ReactiveStorageInstance */__webpack_require__.d(__webpack_exports__, "ReactiveStorageInstance", function() { return /* Cannot get final name for export "ReactiveStorageInstance" in "./src/mainClass.ts" (known exports: StorageError _ReactiveStorage default, known reexports: ) */ undefined; });
+/* concated harmony reexport ReactiveStorageInterface */__webpack_require__.d(__webpack_exports__, "ReactiveStorageInterface", function() { return /* Cannot get final name for export "ReactiveStorageInterface" in "./src/mainClass.ts" (known exports: StorageError _ReactiveStorage default, known reexports: ) */ undefined; });
+/* concated harmony reexport StorageError */__webpack_require__.d(__webpack_exports__, "StorageError", function() { return mainClass_StorageError; });
+/* concated harmony reexport PluginOptions */__webpack_require__.d(__webpack_exports__, "PluginOptions", function() { return /* Cannot get final name for export "PluginOptions" in "./src/plugin.ts" (known exports: default, known reexports: ) */ undefined; });
+/* concated harmony reexport ReactiveStorage */__webpack_require__.d(__webpack_exports__, "ReactiveStorage", function() { return mainClass; });
 /* concated harmony reexport version */__webpack_require__.d(__webpack_exports__, "version", function() { return version; });
+/* concated harmony reexport ReactiveStorageVuexModule */__webpack_require__.d(__webpack_exports__, "ReactiveStorageVuexModule", function() { return vuexModule; });
 
 
 /* harmony default export */ var entry_lib = __webpack_exports__["default"] = (main);
