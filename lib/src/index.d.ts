@@ -10,6 +10,6 @@ declare global {
         vueReactiveStoragesPlugin: typeof Plugin;
     }
 }
-declare const version = "1.0.10";
+declare const version = "1.0.14";
 export { ReactiveStorage, version, ReactiveStorageVuexModule };
 export default Plugin;

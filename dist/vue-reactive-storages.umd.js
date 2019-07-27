@@ -4154,7 +4154,7 @@ var types = __webpack_require__("a76d");
 
 
 
-var version = '1.0.10';
+var version = '1.0.14';
 plugin_Plugin.version = version;
 window.vueReactiveStoragesPlugin = plugin_Plugin;
 

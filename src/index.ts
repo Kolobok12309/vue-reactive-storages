@@ -13,7 +13,7 @@ declare global {
     }
 }
 
-const version = '1.0.10'
+const version = '1.0.14'
 
 Plugin.version = version;
 
